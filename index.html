@@ -9,8 +9,19 @@
     <title>TicTacToe</title>
 </head>
 <body>
+    <form action="javascript:void(0);" onsubmit="playerStart()">
+        <label for="player1">X mark player</label>
+        <input id="player1" name="player1" type="text">
+        
+        
+        
+        <label for="player">O mark player</label>
+        <input id="player2" name="player2" type="text">
+        <button type="submit" onsubmit="playerStart()">Submit</button>
+    </form>
 
     <div id="content">
+
         <h1>TicTacToe</h1>
         
         <div id="gameboard">
