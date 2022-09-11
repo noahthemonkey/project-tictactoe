@@ -13,12 +13,12 @@
 </head>
 <body>
     <form action="javascript:void(0);" onsubmit="playerStart()">
-        <label for="player1">X mark player</label>
+        <label for="player1">X player name</label>
         <input id="player1" name="player1" type="text">
         
         
         
-        <label for="player">O mark player</label>
+        <label for="player">O player name</label>
         <input id="player2" name="player2" type="text">
         <button type="submit" onsubmit="playerStart()">Submit</button>
     </form>
@@ -38,6 +38,8 @@
             <div onclick="displayController()"  class="square8"></div>
             <div onclick="displayController()"  class="square9"></div>
         </div>
+        
     </div>
+    <button id="resetBtn" onclick="resetGame()">reset</button>
 </body>
 </html>

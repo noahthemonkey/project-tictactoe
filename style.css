@@ -26,3 +26,10 @@
 [class*='square']:hover {
     background-color: red;
 }
+
+
+#resetBtn {
+    width: 10vh;
+    margin-top: 10px;
+    
+}

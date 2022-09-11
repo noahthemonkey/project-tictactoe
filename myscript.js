@@ -25,6 +25,7 @@ const gamePlay = () => {
   else if(diaCombo1 == 'ooo' || diaCombo2 == 'ooo' || verCombo1 == 'ooo' || verCombo2 == 'ooo' || verCombo3 == 'ooo' || horiCombo1 == 'ooo' || horiCombo2 == 'ooo' || horiCombo3 == 'ooo'){
     console.log('noob won!')
     statusMessage.textContent = players.player2.username + " won!"
+    resetGame()
   } else {
     
 
@@ -33,7 +34,8 @@ const gamePlay = () => {
     }
     if(gameboard.board.every(ifTie) === true){
       console.log('its a tie!')
-      statusMessage.textContent = 'its a tie!'
+      statusMessage.textContent = 'Its a tie!'
+      resetGame()
     }
 
       
@@ -47,11 +49,11 @@ const gamePlay = () => {
 const players =  {
   
     player1: {
-      username: '',
+      username: 'X',
       role: 'x'
     },
     player2: {
-      username: '',
+      username: 'O',
       role: 'o'
 
     },
@@ -104,7 +106,7 @@ const displayController = () => {
 
 
 
-  window.onclick = e => {
+  contentContainer.onclick = e => {
 
     const clickedElement = document.querySelector(`.${e.target.className}`)
     console.log(clickedElement)
@@ -115,8 +117,8 @@ const displayController = () => {
 
         const index = gameboard.board.indexOf(e.target.className)
         playerTurn()
-        statusMessage.textContent = 'its ' + playerName + "'s turn"
-        console.log('its ' + playerName + "'s turn")
+        statusMessage.textContent = 'Its ' + playerName + "'s turn"
+        console.log('Its ' + playerName + "'s turn")
         contentContainer.appendChild(statusMessage)
         
         gameboard.board[index] = playerPicker
@@ -133,7 +135,26 @@ const displayController = () => {
 }
 
 
+const resetGame = () => {
+  let i;
+    const squares = document.querySelectorAll(`[class*=square]`)
 
+    squares.forEach(squares => {
+      squares.innerHTML = ''
+    })
+
+    
+  for( i = 0; i < 9; i++){
+
+    squares.textContent = ' '
+    gameboard.board[i] = `square${i+1}`
+
+    
+    
+  }
+
+  statusMessage.textContent = 'Its ' + players.player1.username + "'s turn!"
+}
 
 
 console.log(gameboard.board)
