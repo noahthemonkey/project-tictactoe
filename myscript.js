@@ -1,11 +1,35 @@
 const statusMessage = document.createElement('div')
+statusMessage.setAttribute('id', 'statusMessage')
+
+const scoreKeeper = document.createElement('div')
+scoreKeeper.setAttribute('id', 'scoreKeeper')
+
 const contentContainer = document.querySelector('#content')
 
 const gameboard = {
   board: ['square1', 'square2', 'square3', 'square4', 'square5', 'square6', 'square7', 'square8', 'square9']
 }
 
+const players =  {
+  
+  player1: {
+    username: 'X',
+    role: 'x',
+    score: 0
+  },
+  player2: {
+    username: 'O',
+    role: 'o',
+    score: 0
+
+  },
+
+}
+
+statusMessage.textContent = 'Its ' + players.player1.username + "'s turn!"
+
 const gamePlay = () => {
+
   let horiCombo1 = gameboard.board[0] + gameboard.board[1] +gameboard.board[2]
   let horiCombo2 = gameboard.board[3] + gameboard.board[4] +gameboard.board[5]
   let horiCombo3 = gameboard.board[6] + gameboard.board[7] +gameboard.board[8]
@@ -19,13 +43,23 @@ const gamePlay = () => {
   let diaCombo2 = gameboard.board[2] + gameboard.board[4] +gameboard.board[6]
   
   if(diaCombo1 == 'xxx' || diaCombo2 == 'xxx' || verCombo1 == 'xxx' || verCombo2 == 'xxx' || verCombo3 == 'xxx' || horiCombo1 == 'xxx' || horiCombo2 == 'xxx' || horiCombo3 == 'xxx'){
-    statusMessage.textContent = players.player1.username + " won!"
 
+
+   players.player1.score = players.player1.score +1
+   scoreKeeper.textContent = players.player1.score + '-' + players.player2.score
+    
+   resetGame()
+    statusMessage.textContent = players.player1.username + " won!"
   }
   else if(diaCombo1 == 'ooo' || diaCombo2 == 'ooo' || verCombo1 == 'ooo' || verCombo2 == 'ooo' || verCombo3 == 'ooo' || horiCombo1 == 'ooo' || horiCombo2 == 'ooo' || horiCombo3 == 'ooo'){
-    console.log('noob won!')
-    statusMessage.textContent = players.player2.username + " won!"
+
+
+
+    players.player2.score = players.player2.score +1
+    scoreKeeper.textContent = players.player1.score + '-' + players.player2.score
+  
     resetGame()
+    statusMessage.textContent = players.player2.username + " won!"
   } else {
     
 
@@ -34,8 +68,9 @@ const gamePlay = () => {
     }
     if(gameboard.board.every(ifTie) === true){
       console.log('its a tie!')
-      statusMessage.textContent = 'Its a tie!'
+      
       resetGame()
+      statusMessage.textContent = 'Its a tie!'
     }
 
       
@@ -46,19 +81,11 @@ const gamePlay = () => {
 
 
 
-const players =  {
-  
-    player1: {
-      username: 'X',
-      role: 'x'
-    },
-    player2: {
-      username: 'O',
-      role: 'o'
 
-    },
+scoreKeeper.textContent = players.player1.score + '-' + players.player2.score
+contentContainer.appendChild(scoreKeeper)
+contentContainer.appendChild(statusMessage)
 
-}
 
 const playerStart = () => {
   const player1Input = document.getElementById('player1')
@@ -97,6 +124,7 @@ playerTurn = () => {
           return currentPlayer = 1, playerPicker = players.player2.role;
   }
   console.log(playerPicker)
+  
 }
 
 
@@ -108,7 +136,7 @@ const displayController = () => {
 
   contentContainer.onclick = e => {
 
-    const clickedElement = document.querySelector(`.${e.target.className}`)
+    const clickedElement = contentContainer.querySelector(`.${e.target.className}`)
     console.log(clickedElement)
 
     if(clickedElement.textContent == 'x' || clickedElement.textContent == 'o' ){
@@ -136,6 +164,12 @@ const displayController = () => {
 
 
 const resetGame = () => {
+  if(playerName == players.player2.username){
+    
+   playerTurn()
+   resetGame()
+   
+  }else{
   let i;
     const squares = document.querySelectorAll(`[class*=square]`)
 
@@ -153,8 +187,17 @@ const resetGame = () => {
     
   }
 
+
   statusMessage.textContent = 'Its ' + players.player1.username + "'s turn!"
 }
+}
 
+
+const newGame = () => { 
+  players.player1.score = 0
+  players.player2.score = 0
+  scoreKeeper.textContent = players.player1.score + '-' + players.player2.score
+  resetGame()
+}
 
 console.log(gameboard.board)
