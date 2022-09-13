@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
     <script src="myscript.js" defer></script>
     
     <title>TicTacToe</title>
 </head>
 <body>
-    <form action="javascript:void(0);" onsubmit="playerStart()">
+    <form action="javascript:void(0);" onsubmit="players.playerStart()">
         <label for="player1">X player name</label>
         <input id="player1" name="player1" type="text">
         
@@ -28,21 +28,21 @@
         <h1>TicTacToe</h1>
         
         <div id="gameboard">
-            <div onclick="displayController()" class="square1"></div>
-            <div onclick="displayController()" class="square2"></div>
-            <div onclick="displayController()"  class="square3"></div>
-            <div onclick="displayController()" class="square4"></div>
-            <div onclick="displayController()" class="square5"></div>
-            <div onclick="displayController()"  class="square6"></div>
-            <div onclick="displayController()" class="square7"></div>
-            <div onclick="displayController()"  class="square8"></div>
-            <div onclick="displayController()"  class="square9"></div>
+            <div onclick="displayController.placeMark()" class="square1"></div>
+            <div onclick="displayController.placeMark()" class="square2"></div>
+            <div onclick="displayController.placeMark()"  class="square3"></div>
+            <div onclick="displayController.placeMark()" class="square4"></div>
+            <div onclick="displayController.placeMark()" class="square5"></div>
+            <div onclick="displayController.placeMark()"  class="square6"></div>
+            <div onclick="displayController.placeMark()" class="square7"></div>
+            <div onclick="displayController.placeMark()"  class="square8"></div>
+            <div onclick="displayController.placeMark()"  class="square9"></div>
         </div>
         
     </div>
     <div id="buttonContainer">
-    <button class="resetButtons" id="resetBtn" onclick="resetGame()">reset</button>
-    <button class="resetButtons" id="newGame" onclick="newGame()">reset score</button>
+    <button class="resetButtons" id="resetBtn" onclick="displayController.resetGame()">reset</button>
+    <button class="resetButtons" id="newGame" onclick="displayController.newGame()">reset score</button>
 </div>
 </body>
 </html>
